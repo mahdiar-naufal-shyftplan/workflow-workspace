@@ -1,0 +1,18 @@
+name: Reused Workflow
+on:
+  workflow_call:
+    inputs:
+      baseURL:
+        required: true
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}/${{ github.head_ref || github.ref_name || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  job_a:
+    name: Job A
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "Job A done"'
