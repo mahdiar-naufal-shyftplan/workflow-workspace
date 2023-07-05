@@ -9,7 +9,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  e2e-smoke:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "Job Main done"'
+  job-a:
     uses: ./.github/workflows/reused-workflow.yml
     with:
       baseURL: https://${{ needs.setup.outputs.branch_name }}.github.com
