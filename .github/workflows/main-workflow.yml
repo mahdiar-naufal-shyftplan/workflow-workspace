@@ -1,0 +1,15 @@
+name: Main push
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}/${{ github.head_ref || github.ref_name || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e-smoke:
+    uses: ./.github/workflows/reused-workflow.yml
+    with:
+      baseURL: https://${{ needs.setup.outputs.branch_name }}.github.com
