@@ -14,6 +14,7 @@ jobs:
     steps:
       - run: 'echo "Job Main done"'
   job-a:
+    needs: [first]
     uses: ./.github/workflows/reused-workflow.yml
     with:
       baseURL: https://${{ needs.setup.outputs.branch_name }}.github.com
