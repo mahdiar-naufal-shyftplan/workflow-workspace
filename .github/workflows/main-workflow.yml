@@ -11,7 +11,6 @@ concurrency:
 jobs:
   cache-cleanup:
     if: ${{ always() }}
-    needs: test
     runs-on: ubuntu-latest
     permissions:
       # `actions:write` permission is required to delete caches
